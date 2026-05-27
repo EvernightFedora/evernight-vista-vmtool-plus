@@ -1,0 +1,13 @@
+[Unit]
+Description=VMware Shared Folder Auto-Mount Service
+ConditionVirtualization=vmware
+After=vmtoolsd.service open-vm-tools.service
+Requires=vmtoolsd.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/vmware-mount-shared.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
